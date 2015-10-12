@@ -1,8 +1,11 @@
 \documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
 \usepackage{amssymb}
-\usepackage{commath}
+\usepackage{commath} % Will load amsmath, used for \dif
 \usepackage{physics}
 \usepackage{tikz,tikz-3dplot}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}} % Uncomment for BOLD vectors.
+%\newcommand{\vect}[1]{\vec{#1}} % Uncomment for ARROW vectors.
 % --------------------------------------- Title Matter -----------------------------------------
 
 \title{Derivation of the Differential Continuity Equation}
@@ -70,7 +73,7 @@ m = \rho \dif x \dif y \dif z
 \end{equation}
 
 \begin{equation}
-\frac{\Dif \rho}{\Dif t}   = - \rho \div \vec{u}
+\frac{\Dif \rho}{\Dif t}   = - \rho \div \vect{u}
 \end{equation}
 
 \end{document}
