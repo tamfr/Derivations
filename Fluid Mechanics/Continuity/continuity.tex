@@ -6,51 +6,65 @@
 
 \newcommand{\vect}[1]{\boldsymbol{#1}} % Uncomment for BOLD vectors.
 %\newcommand{\vect}[1]{\vec{#1}} % Uncomment for ARROW vectors.
+
 % --------------------------------------- Title Matter -----------------------------------------
 
 \title{Derivation of the Differential Continuity Equation}
 \author{Eric Mott}
-\date{2015-10-11}					% Activate to display a given date or no date
+\date{2015-10-11}
 
 % --------------------------------------- Begin Document -----------------------------------------
 
 \begin{document}
-\maketitle 							% Places title matter
+\maketitle 	% Places title matter
 
-% --------------------------------------- Section 2 -----------------------------------------
+% --------------------------------------- Derivation -----------------------------------------
 
-\section{Continuity Equation}			% Creates a numbered section
+\section{Continuity Equation}
 
 \begin{figure}
 \centering
 \tdplotsetmaincoords{305}{75}
-\begin{tikzpicture}[scale=3]
-\tikzstyle{every node}=[font = \small]
-
-% x, y, and z axes
-\draw[thick,-latex] (0,0,0) -- (2,0,0) node[anchor = north east] {$x$};
-\draw[thick,-latex] (0,0,0) -- (0,2,0) node[anchor = north west] {$y$};
-\draw[thick,-latex] (0,0,0) -- (0,0,2) node[anchor = south] {$z$};
-
-% Edges of elemental control volume
-\draw [ultra thick] (0,1,1) -- (0,1,0);
-\draw [ultra thick] (0,1,0) -- (1,1,0) node[midway, anchor = south] {$\dif x$};
-\draw [ultra thick] (1,1,0) -- (1,0,0) node[midway, anchor = west] {$\dif y$}; 
-\draw [ultra thick] (1,0,0) -- (1,0,1) node[midway, anchor = west] {$\dif z$};
-\draw [ultra thick] (1,1,1) -- (1,1,0);
-\draw [ultra thick] (1,1,1) -- (1,0,1);
-\draw [ultra thick] (1,1,1) -- (0,1,1);
-\draw [ultra thick] (1,0,1) -- (0,0,1);
-\draw [ultra thick] (0,1,1) -- (0,0,1);
-\draw [ultra thick] (0,0,0) -- (1,0,0);
-\draw [ultra thick] (0,0,0) -- (0,1,0);
-\draw [ultra thick] (0,0,0) -- (0,0,1);
-
-% Mass flow vectors
-\draw [ultra thick, -latex] ( 1.0, 0.5, 0.5) -- (1.5, 0.5, 0.5); % mass flow out, x-direction
-\draw [ultra thick, -latex] (-0.5, 0.5, 0.5) -- (0.0, 0.5, 0.5); % mass flow in, x-direction
-
-\end{tikzpicture}
+    
+    \begin{tikzpicture}[scale = 3]
+        \tikzstyle{every node}=[font = \small]
+        
+        % x, y, and z axes
+        \draw[-latex] (0,0,0) -- (2,0,0) node[anchor = north east] {$x$};
+        \draw[-latex] (0,0,0) -- (0,2,0) node[anchor = north west] {$y$};
+        \draw[-latex] (0,0,0) -- (0,0,2) node[anchor = west] {$z$};
+        
+        % Edges of elemental control volume
+        \draw [ultra thick] (0,0,0) -- (1,0,0);
+        \draw [ultra thick] (0,0,0) -- (0,1,0);
+        \draw [ultra thick] (0,0,0) -- (0,0,1);
+        \draw [ultra thick] (0,1,0) -- (1,1,0) node[midway, anchor = south] {$\dif x$};
+        \draw [ultra thick] (1,1,0) -- (1,0,0) node[midway, anchor = west] {$\dif y$}; 
+        \draw [ultra thick] (1,0,0) -- (1,0,1) node[midway, anchor = west] {$\dif z$};
+        \draw [ultra thick] (0,1,1) -- (0,1,0);
+        \draw [ultra thick] (1,1,1) -- (1,1,0);
+        \draw [ultra thick] (1,1,1) -- (1,0,1);
+        \draw [ultra thick] (1,1,1) -- (0,1,1);
+        \draw [ultra thick] (1,0,1) -- (0,0,1);
+        \draw [ultra thick] (0,1,1) -- (0,0,1);
+        
+        \draw [dashed] (0,0,0) -- (0,1,1);
+        \draw [dashed] (0,1,0) -- (0,0,1);
+        \draw [dashed] (1,0,0) -- (1,1,1);
+        \draw [dashed] (1,1,0) -- (1,0,1);
+        \draw [dashed] (0,0,0) -- (1,0,1);
+        \draw [dashed] (1,0,0) -- (0,0,1);
+        \draw [dashed] (0,1,0) -- (1,1,1);
+        \draw [dashed] (1,1,0) -- (0,1,1);
+        
+        % Mass flow vectors
+        \draw [ultra thick, -latex] (-0.5, 0.5, 0.5) -- (0.0, 0.5, 0.5) node[at start, anchor = east] {$ \rho u_x \dif y \dif z $}; % mass flow in, x-direction
+        \draw [ultra thick, -latex] ( 1.0, 0.5, 0.5) -- (1.5, 0.5, 0.5) node[anchor = west] {$ ( \rho u_x + \pdv{\rho u_x}{x} \dif x ) \dif y \dif z $}; % mass flow out, x-direction
+        \draw [ultra thick, -latex] ( 0.5,-0.5, 0.5) -- (0.5, 0.0, 0.5) node[at start, anchor = north] {$ \rho u_y \dif x \dif z $}; % mass flow in, y-direction    
+        \draw [ultra thick, -latex] ( 0.5, 1, 0.5) -- (0.5, 1.5, 0.5) node[anchor =  south] {$ ( \rho u_y + \pdv{\rho u_y}{y} \dif y ) \dif x \dif z $}; % mass flow out, x-direction
+        
+    \end{tikzpicture}
+    
 \end{figure}
 
 Starting with the first principle of conservation of mass:
