@@ -24,7 +24,7 @@
 
 \begin{figure}
 \centering
-\tdplotsetmaincoords{305}{75}
+%\tdplotsetmaincoords{325}{75}
     
     \begin{tikzpicture}[scale = 3]
         \tikzstyle{every node}=[font = \small]
@@ -48,6 +48,7 @@
         \draw [ultra thick] (1,0,1) -- (0,0,1);
         \draw [ultra thick] (0,1,1) -- (0,0,1);
         
+         % Vector-face intersection lines
         \draw [dashed] (0,0,0) -- (0,1,1);
         \draw [dashed] (0,1,0) -- (0,0,1);
         \draw [dashed] (1,0,0) -- (1,1,1);
@@ -61,24 +62,37 @@
         \draw [ultra thick, -latex] (-0.5, 0.5, 0.5) -- (0.0, 0.5, 0.5) node[at start, anchor = east] {$ \rho u_x \dif y \dif z $}; % mass flow in, x-direction
         \draw [ultra thick, -latex] ( 1.0, 0.5, 0.5) -- (1.5, 0.5, 0.5) node[anchor = west] {$ ( \rho u_x + \pdv{\rho u_x}{x} \dif x ) \dif y \dif z $}; % mass flow out, x-direction
         \draw [ultra thick, -latex] ( 0.5,-0.5, 0.5) -- (0.5, 0.0, 0.5) node[at start, anchor = north] {$ \rho u_y \dif x \dif z $}; % mass flow in, y-direction    
-        \draw [ultra thick, -latex] ( 0.5, 1, 0.5) -- (0.5, 1.5, 0.5) node[anchor =  south] {$ ( \rho u_y + \pdv{\rho u_y}{y} \dif y ) \dif x \dif z $}; % mass flow out, x-direction
-        
+        \draw [ultra thick, -latex] ( 0.5, 1.0, 0.5) -- (0.5, 1.5, 0.5) node[anchor =  south] {$ ( \rho u_y + \pdv{\rho u_y}{y} \dif y ) \dif x \dif z $}; % mass flow out, x-direction
+              
     \end{tikzpicture}
     
 \end{figure}
 
-Starting with the first principle of conservation of mass:
+Starting with the first principle of conservation of mass applied to a control volume:
 
 \begin{equation}
-\text{time rate change in mass} = \text{mass transfer in} - \text{mass transfer out}
+\text{rate of mass accumulation} = \text{mass transfer in} - \text{mass transfer out}
 \end{equation}
 
 \noindent 
 This can be expressed mathematically as:
 
 \begin{equation}
-\pdv{m}{t} = \dot{m}_{in} - \dot{m}_{out}
+\pdv{m}{t} = \sum \dot{m}_{in} - \sum \dot{m}_{out}
 \end{equation}
+
+\noindent
+where, {$ \pdv{m}{t} $}, is the time rate change of mass, {$ m $}, inside the control volume, 
+
+\noindent
+Recall that the mass flow rate, {$  \dot{m} $}, for a fluid is simply the following:
+
+\begin{equation}
+\dot{m}  = \rho A u
+\end{equation}
+
+\noindent
+where, {$ \rho $}, is its density, and {$ u $}, is its velocity flowing through a defined surface of a control volume with cross-sectional area,  {$ A $}.
 
 \begin{equation}
 \pdv{m}{t} = (\rho A u)_{in} - (\rho A u)_{out}
